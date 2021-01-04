@@ -21,7 +21,7 @@ const Details = (props) => {
   useEffect(() => {
     const getDetails = async () => {
       const result = await axios(
-        `/positions/${props.match.params.id}.json?markdown=false`
+        `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${props.match.params.id}.json?markdown=false`
       );
       setDetails(result.data);
     };
