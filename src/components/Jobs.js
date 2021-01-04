@@ -64,9 +64,7 @@ const Jobs = () => {
                   </div>
                   <div>
                     <JobTitle>
-                      <JobDetailsLink
-                        to={`/${job.id}`}
-                      >
+                      <JobDetailsLink to={`/${job.id}`}>
                         {job.title}
                       </JobDetailsLink>
                     </JobTitle>

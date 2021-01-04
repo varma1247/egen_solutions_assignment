@@ -19,11 +19,11 @@ function App() {
       <AppLayout>
         <Header />
         <JobsContextProvider>
-          <Router>
+          <Router basename={process.env.PUBLIC_URL}>
             <Switch>
               <AppContent>
                 <Route
-                  path="/egen_solutions_assignment"
+                  path="/"
                   exact
                   render={(props) => (
                     <>
