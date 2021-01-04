@@ -64,7 +64,9 @@ const Jobs = () => {
                   </div>
                   <div>
                     <JobTitle>
-                      <JobDetailsLink to={`/${job.id}`}>
+                      <JobDetailsLink
+                        to={`egen_solutions_assignment/${job.id}`}
+                      >
                         {job.title}
                       </JobDetailsLink>
                     </JobTitle>
