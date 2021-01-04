@@ -23,7 +23,7 @@ function App() {
             <Switch>
               <AppContent>
                 <Route
-                  path="/"
+                  path="/egen_solutions_assignment"
                   exact
                   render={(props) => (
                     <>
@@ -32,7 +32,7 @@ function App() {
                     </>
                   )}
                 />
-                <Route path="/:id" exact component={Details} />
+                <Route path="/egen_solutions_assignment/:id" exact component={Details} />
               </AppContent>
             </Switch>
           </Router>
