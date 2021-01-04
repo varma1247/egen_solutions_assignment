@@ -32,7 +32,7 @@ function App() {
                     </>
                   )}
                 />
-                <Route path="/egen_solutions_assignment/:id" exact component={Details} />
+                <Route path="/:id" exact component={Details} />
               </AppContent>
             </Switch>
           </Router>
