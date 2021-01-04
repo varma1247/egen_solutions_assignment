@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
 import { JobsContext } from "../context/JobsContext";
 import {
@@ -25,6 +25,7 @@ const Search = () => {
     setNoJobs,
   } = useContext(JobsContext);
   const [showFilters, setShowFilters] = useState(false);
+  const [loading, setLoading] = useState(false);
   const onChangeDescription = (val) => {
     setDescription(val);
   };
@@ -35,10 +36,12 @@ const Search = () => {
     setIsFulltime(!isFulltime);
   };
   const onSearch = async () => {
+    setLoading(true);
     const des = description.split(" ").join("+");
     const loc = location.split(" ").join("+");
     let searchUrl = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${des}&location=${loc}&full_time=${isFulltime}&page=1`;
     const result = await axios(searchUrl);
+    setLoading(false);
     if (result.data.length === 0) {
       setNoJobs(true);
     } else {
@@ -162,6 +165,11 @@ const Search = () => {
           </>
         )}
       </SearchBarMobile>
+      {loading && (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
     </>
   );
 };

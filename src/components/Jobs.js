@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Button } from "react-bootstrap";
+import { useContext, useState } from "react";
+import { Button, Spinner } from "react-bootstrap";
 import { JobsContext } from "../context/JobsContext";
 import moment from "moment";
 import axios from "axios";
@@ -27,11 +27,14 @@ const Jobs = () => {
     noJobs,
     setNoJobs,
   } = useContext(JobsContext);
+  const [loading, setLoading] = useState(false);
   const onLoadMore = async (pageNumber) => {
+    setLoading(true);
     const des = description.split(" ").join("+");
     const loc = location.split(" ").join("+");
     let searchUrl = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${des}&location=${loc}&full_time=${isFulltime}&page=${pageNumber}`;
     const result = await axios(searchUrl);
+    setLoading(false);
     if (result.data.length === 0) {
       setNoJobs(true);
     } else {
@@ -41,6 +44,11 @@ const Jobs = () => {
   };
   return (
     <>
+      {loading && (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
       {jobs.length > 0 && (
         <>
           <AllJobs>
