@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import "./App.css";
+import { ThemeProvider } from "styled-components";
+import lightTheme from "./themes/light";
+import darkTheme from "./themes/dark";
+import { ThemeContext } from "./context/ThemeContext";
+import { AppLayout, AppContent } from "./styles/contentStyles";
+import Header from "./components/Header";
+import Search from "./components/Search";
+import Details from "./components/Details";
+import Jobs from "./components/Jobs";
+import { JobsContextProvider } from "./context/JobsContext";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+  const { darkMode } = useContext(ThemeContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <AppLayout>
+        <Header />
+        <JobsContextProvider>
+          <Router>
+            <Switch>
+              <AppContent>
+                <Route
+                  path="/"
+                  exact
+                  render={(props) => (
+                    <>
+                      <Search />
+                      <Jobs />
+                    </>
+                  )}
+                />
+                <Route path="/:id" exact component={Details} />
+              </AppContent>
+            </Switch>
+          </Router>
+        </JobsContextProvider>
+      </AppLayout>
+    </ThemeProvider>
   );
 }
 
