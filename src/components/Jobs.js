@@ -30,7 +30,7 @@ const Jobs = () => {
   const onLoadMore = async (pageNumber) => {
     const des = description.split(" ").join("+");
     const loc = location.split(" ").join("+");
-    let searchUrl = `https://jobs.github.com/positions.json?description=${des}&location=${loc}&full_time=${isFulltime}&page=${pageNumber}`;
+    let searchUrl = `/positions.json?description=${des}&location=${loc}&full_time=${isFulltime}&page=${pageNumber}`;
     const result = await axios(searchUrl);
     if (result.data.length === 0) {
       setNoJobs(true);
