@@ -10,7 +10,7 @@ import Search from "./components/Search";
 import Details from "./components/Details";
 import Jobs from "./components/Jobs";
 import { JobsContextProvider } from "./context/JobsContext";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const { darkMode } = useContext(ThemeContext);
